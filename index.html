@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfie — Data Engineer / Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --ink: #16211D;
+    --ink-soft: #45534C;
+    --sidebar-bg: #12261F;
+    --sidebar-ink: #EDEFE8;
+    --sidebar-ink-soft: #A9BBB1;
+    --accent: #1F7A5C;
+    --accent-2: #C9862D;
+    --line: #DAD6CB;
+    --line-dark: #26392F;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  a { color: var(--accent); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  aside {
+    background: var(--sidebar-bg);
+    color: var(--sidebar-ink);
+    padding: 3rem 2.25rem;
+  }
+
+  aside .name {
+    font-size: 2rem;
+    line-height: 1.15;
+    color: var(--sidebar-ink);
+  }
+
+  aside .role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-2);
+    margin-top: 0.6rem;
+    letter-spacing: 0.02em;
+  }
+
+  aside .block {
+    margin-top: 2.5rem;
+  }
+
+  aside .block h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--sidebar-ink-soft);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line-dark);
+    padding-bottom: 0.5rem;
+  }
+
+  aside .contact-item {
+    display: block;
+    font-size: 0.92rem;
+    margin-bottom: 0.55rem;
+    color: var(--sidebar-ink-soft);
+    word-break: break-word;
+  }
+
+  aside .contact-item a { color: var(--sidebar-ink); text-decoration: none; }
+  aside .contact-item a:hover { color: var(--accent-2); }
+
+  aside .skill-group { margin-bottom: 1rem; }
+  aside .skill-group .label {
+    font-size: 0.78rem;
+    color: var(--sidebar-ink-soft);
+    margin-bottom: 0.3rem;
+  }
+  aside .skill-group .items {
+    font-size: 0.92rem;
+    color: var(--sidebar-ink);
+  }
+
+  aside .lang-item {
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+  }
+  aside .lang-item span {
+    color: var(--sidebar-ink-soft);
+    font-size: 0.82rem;
+  }
+
+  /* ---------- Main ---------- */
+  main {
+    padding: 3.5rem 3.5rem 4rem;
+    max-width: 760px;
+  }
+
+  section { margin-bottom: 3rem; }
+
+  section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .summary {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1.25rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .entry:last-child { border-bottom: 1px solid var(--line); }
+
+  .entry .period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .entry h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .entry .org {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0.15rem 0 0.6rem;
+  }
+
+  .entry ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+
+  .entry li { margin-bottom: 0.35rem; }
+
+  .project-card {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 1.4rem 1.6rem;
+    background: #ffffff;
+  }
+
+  .project-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .project-card .stack {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin: 0.6rem 0 0.9rem;
+  }
+
+  .project-card p { color: var(--ink-soft); margin: 0 0 0.9rem; font-size: 0.96rem; }
+
+  .project-card a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .edu-item { margin-bottom: 1rem; }
+  .edu-item h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+  .edu-item p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  footer {
+    padding: 2rem 3.5rem 3rem;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    main { padding: 2.5rem 1.5rem 3rem; }
+    aside { padding: 2.5rem 1.5rem; }
+    .entry { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+
+  @media print {
+    aside { background: #fff !important; color: var(--ink) !important; }
+    aside .name, aside .contact-item, aside .skill-group .items { color: var(--ink) !important; }
+    .layout { grid-template-columns: 260px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <aside>
+    <div class="name">Alfie<br>[Tu Apellido]</div>
+    <div class="role">Data Engineer / Data Scientist</div>
+
+    <div class="block">
+      <h3>Contacto</h3>
+      <span class="contact-item">📍 Ciudad de México</span>
+      <span class="contact-item"><a href="mailto:alfiediaz.mx@outlook.com">alfiediaz.mx@outlook.com</a></span>
+      <span class="contact-item"><a href="tel:+525500000000">+52 55 4179 6803</a></span>
+      <span class="contact-item"><a href="https://linkedin.com/in/tu-usuario" target="_blank">www.linkedin.com/in/alfie-díaz</a></span>
+      <span class="contact-item"><a href="https://github.com/alfiediazmx-hub" target="_blank">github.com/alfiediazmx-hub</a></span>
+    </div>
+
+    <div class="block">
+      <h3>Habilidades técnicas</h3>
+      <div class="skill-group">
+        <div class="label">Lenguajes y datos</div>
+        <div class="items">Python, SQL, PHP, .NET, Java</div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Bases de datos</div>
+        <div class="items">Oracle (Forms/Reports, Autonomous DB), PL/SQL</div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Data & ML</div>
+        <div class="items">ETL/ELT, Airflow, Prophet, XGBoost, Pandas, Scikit-learn, spaCy, NumPy, GeoPandas, NetworkX, SQLAlchemy, PySpark </div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Herramientas</div>
+        <div class="items">Git/GitHub, Anaconda, Loyverse API</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Idiomas</h3>
+      <div class="lang-item">Español <span>— nativo</span></div>
+      <div class="lang-item">Inglés <span>— funcional, colaboración en equipos internacionales</span></div>
+    </div>
+  </aside>
+
+  <main>
+    <section>
+      <h2>Perfil</h2>
+      <p class="summary">
+        Ingeniero electrónico con estudios adicionales en sistemas computacionales y más de dos décadas de experiencia
+        en desarrollo de software y sistemas de datos en PepsiCo, donde pasé de desarrollo de aplicaciones a liderar
+        iniciativas de ETL y migraciones para la región LATAM. Actualmente combino esa base técnica con la operación
+        de mi propio negocio, donde diseño y construyo de principio a fin un sistema de pronóstico de ventas basado en
+        modelos de series de tiempo y machine learning. Busco una posición de Data Engineer / Data Scientist donde
+        pueda aplicar esa experiencia end-to-end: desde la ingesta y limpieza de datos hasta el modelado y la puesta
+        en producción.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experiencia</h2>
+
+      <div class="entry">
+        <div class="period">2019 — 2024</div>
+        <div>
+          <h3>PepsiCo</h3>
+          <div class="org">IT Sector Lead LATAM · Backend & ETL Developer</div>
+          <ul>
+            <li>Desarrollo backend y construcción de pipelines ETL para procesos de negocio regionales</li>
+            <li>Liderazgo del sector de TI para la región LATAM</li>
+            <li>Migraciones de sistemas y modernización de procesos de datos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="period">2009 — 2016</div>
+        <div>
+          <h3>PepsiCo</h3>
+          <div class="org">Desarrollador de Aplicaciones · Líder de Proyecto</div>
+          <ul>
+            <li>Desarrollo con Oracle Forms/Reports y SQL, además de PHP, .NET, Java y desarrollo móvil</li>
+            <li>Liderazgo técnico de proyectos de desarrollo de principio a fin</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="period">Actualidad</div>
+        <div>
+          <h3>The Beauty Store</h3>
+          <div class="org">Fundador y operador · Cerca de Metro Chabacano, CDMX</div>
+          <ul>
+            <li>Operación diaria de tienda de cosméticos, de lunes a sábado</li>
+            <li>Diseño y desarrollo de TBS-AI-LAB, sistema propio de pronóstico de ventas (ver proyecto destacado)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Proyecto destacado</h2>
+      <div class="project-card">
+        <h3>TBS-AI-LAB</h3>
+        <div class="stack">Python · Oracle Autonomous DB · Prophet · XGBoost · Airflow · Loyverse POS</div>
+        <p>
+          Sistema de pronóstico de ventas construido de principio a fin para The Beauty Store: pipeline ETL que
+          integra datos de punto de venta (Loyverse) e indicadores económicos externos (tipo de cambio, inflación,
+          Banxico) hacia una base de datos Oracle en la nube, evaluación comparativa de modelos de series de tiempo
+          (Prophet y XGBoost) con backtesting, y orquestación de flujos con Airflow.
+        </p>
+        <a href="https://github.com/alfiediazmx-hub/TBS-AI-LAB" target="_blank">github.com/alfiediazmx-hub/TBS-AI-LAB →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Educación</h2>
+      <div class="edu-item">
+        <h3>Ingeniería Electrónica</h3>
+        <p>Con estudios adicionales en sistemas computacionales</p>
+      </div>
+      <div class="edu-item">
+        <h3>Maestría en Inteligencia Artificial <span style="color: var(--ink-soft); font-weight: 400;">(en pausa)</span></h3>
+        <p>Universidad de La Rioja</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>cv actualizado · 2026</footer>
+
+</body>
+</html>
